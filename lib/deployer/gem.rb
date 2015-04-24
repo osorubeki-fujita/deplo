@@ -26,7 +26,7 @@ def set_cap_namespace_gem
     end
 
     desc "Install Gem #{ fetch( :new_version ) }"
-    task install: :test do
+    task cap_install: :test do
       ::Deployer.process "gem:install" do
         ::Deployer.yes_no( yes: ::Proc.new {
           ::Rake::Task[ "git:commit_for_gem" ].invoke
@@ -38,7 +38,7 @@ def set_cap_namespace_gem
     end
 
     desc "Release Gem #{ fetch( :new_version ) }"
-    task release: :install do
+    task release: :cap_install do
       ::Deployer.process "gem:release" do
         ::Deployer.yes_no( message: "Release Gem #{ fetch( :new_version ) }" , yes: ::Proc.new {
           system( "rake release" )
