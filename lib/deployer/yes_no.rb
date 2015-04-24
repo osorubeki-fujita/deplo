@@ -1,8 +1,13 @@
 module Deployer
 
-  def self.yes_no( condition = nil , yes: nil , no: nil )
+  def self.yes_no( condition = nil , message: nil , yes: nil , no: nil )
+    if message.present?
+      puts message
+    end
     puts "OK? [Yn]"
     yn = ::STDIN.gets.chomp
+    condition ||= false
+
     if yn.downcase == "y"
       condition = true
       if yes.present?

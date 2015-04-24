@@ -9,8 +9,7 @@ class Deployer::TitleForGitCommit < Deployer::FromCommandLine
   def set
     if @gem_version.present?
       @content = "Install Gem (#{ @gem_version })"
-      puts message_after_input_string
-      @condition = ::Deployer.yes_no( @condition )
+      @condition = ::Deployer.yes_no( message: message_after_input_string ) # ( @condition )
       super
     else
       super

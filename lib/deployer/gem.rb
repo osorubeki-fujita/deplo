@@ -37,6 +37,15 @@ def set_cap_namespace_gem
       end
     end
 
+    desc "Release Gem #{ fetch( :new_version ) }"
+    task release: :install do
+      ::Deployer.process "gem:release" do
+        ::Deployer.yes_no( message: "Release Gem #{ fetch( :new_version ) }" , yes: ::Proc.new {
+          system( "rake release" )
+        })
+      end
+    end
+
   end
 
 end

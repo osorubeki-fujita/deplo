@@ -7,8 +7,7 @@ class Deployer::BranchNameForGithub < Deployer::FromCommandLine
   def set
     while !( @condition )
       if @content == "master"
-        puts "Use branch \'master\'"
-        @condition = ::Deployer.yes_no( @condition , no: ::Proc.new { @content = nil } )
+        @condition = ::Deployer.yes_no( @condition , no: ::Proc.new { @content = nil } , message: "Use branch \'master\'" )
       else
         super
       end
