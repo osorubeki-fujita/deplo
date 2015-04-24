@@ -25,7 +25,7 @@ class Deployer::TitleForGitCommit < Deployer::FromCommandLine
 
 end
 
-def set_namespace_git
+def set_cap_namespace_git
 
   namespace :git do
   

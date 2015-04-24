@@ -17,7 +17,7 @@ class Deployer::BranchNameForGithub < Deployer::FromCommandLine
 
 end
 
-def set_namespace_github
+def set_cap_namespace_github
 
   namespace :github do
 

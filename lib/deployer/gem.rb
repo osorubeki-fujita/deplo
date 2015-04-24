@@ -1,4 +1,4 @@
-def set_namespace_gem
+def set_cap_namespace_gem
 
   namespace :gem do
 

@@ -1,4 +1,4 @@
-def set_consts
+def set_cap_consts
   set :gem , fetch( :application ).gsub( /\Agem_/ , "" )
   set :latest_version_file , ::File.expand_path( "#{ fetch( :pj_dir ) }/LatestVersion" )
 

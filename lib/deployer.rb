@@ -30,9 +30,9 @@ module Deployer
 
 end
 
-def cap_set
-  set_consts
-  set_namespace_git
-  set_namespace_github
-  set_namespace_gem
+def set_cap_tasks_from_deployer
+  set_cap_consts
+  set_cap_namespace_git
+  set_cap_namespace_github
+  set_cap_namespace_gem
 end
