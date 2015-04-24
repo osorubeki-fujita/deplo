@@ -10,7 +10,7 @@ def set_cap_namespace_gem
     end
 
     desc "Gem - Rake install"
-    task :rake_install do
+    task :rake_install_locally do
       ::Deployer.process "gem:install" do
         system( "rake install" )
       end
@@ -26,20 +26,20 @@ def set_cap_namespace_gem
     end
 
     desc "Install Gem #{ fetch( :new_version ) }"
-    task cap_install: :test do
+    task install_locally: :test do
       ::Deployer.process "gem:install" do
         ::Deployer.yes_no( yes: ::Proc.new {
           ::Rake::Task[ "git:commit_for_gem" ].invoke
           ::Rake::Task[ "github:push" ].invoke
-          ::Rake::Task[ "gem:rake_install" ].invoke
+          ::Rake::Task[ "gem:rake_install_locally" ].invoke
           ::Rake::Task[ "gem:update" ].invoke
         } )
       end
     end
 
     desc "Release Gem #{ fetch( :new_version ) }"
-    task release: :cap_install do
-      ::Deployer.process "gem:release" do
+    task release_to_public: :install_locally do
+      ::Deployer.process "gem:release_to_public" do
         ::Deployer.yes_no( message: "Release Gem #{ fetch( :new_version ) }" , yes: ::Proc.new {
           system( "rake release" )
         })
