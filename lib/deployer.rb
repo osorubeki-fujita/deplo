@@ -24,7 +24,7 @@ module Deployer
     puts ""
     yield
     puts ""
-    puts "Complete!"
+    puts "-" * 32 + "Complete: #{ command }"
     puts ""
   end
 
