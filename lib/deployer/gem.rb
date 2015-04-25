@@ -119,7 +119,7 @@ def set_cap_namespace_gem
 
       #-------- version.rb
 
-      ::Deployer.display_file_info_to_check( "version.rb" )
+      ::Deployer.display_file_info_to_check( "lib/#{ fetch( :gem ) }/version.rb" )
 
       #-------- config/deploy.rb
 
