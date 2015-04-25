@@ -57,7 +57,7 @@ def set_cap_namespace_gem
       puts "#{ fetch( :gem ) }.gemspec"
       [
         "spec.add_development_dependency \"capistrano\"" ,
-        "spec.add_development_dependency \"deployer\", \">= #{ Deployer::VERSION }\"
+        "spec.add_development_dependency \"deployer\", \">= #{ Deployer::VERSION }\""
       ].each do | str |
         puts " " * 4 + str
       end
@@ -68,14 +68,19 @@ def set_cap_namespace_gem
         "require \'deployer\'" ,
         "spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )" ,
         "version = \"#{ fetch( :new_version ) }\"" ,
-        "describe MetalicRatio do" ,
-        "  it "has a version number \'\#\{ version \}\'" do" ,
+        "describe #{ fetch( :gem ).camelize } do" ,
+        "  it "has a version number \'\#\{ version \}\'\" do" ,
         "    expect( ::#{ fetch( :gem ).camelize }::VERSION ).to eq( version )"
         "    expect( ::#{ fetch( :gem ).camelize }.version_check( MetalicRatio::VERSION , spec_filename ) ).to eq( true )" ,
         "  end"
       ].each do | str |
         puts " " * 4 + str
       end
+      
+      # Capfile
+      # deploy.rb
+      # version.rb
+      # .gitignore
     end
 
   end
