@@ -74,7 +74,7 @@ def set_cap_namespace_gem
         "describe #{ fetch( :gem ).camelize } do" ,
         "  it \"has a version number \\\'\#\{ version \}\\\'\" do" ,
         "    expect( ::#{ fetch( :gem ).camelize }::VERSION ).to eq( version )" ,
-        "    expect( ::#{ fetch( :gem ).camelize }.version_check( ::#{ fetch( :gem ).camelize }::VERSION , spec_filename ) ).to eq( true )" ,
+        "    expect( ::Deployer.version_check( ::#{ fetch( :gem ).camelize }::VERSION , spec_filename ) ).to eq( true )" ,
         "  end"
       )
 

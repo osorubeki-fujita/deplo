@@ -41,11 +41,13 @@ module Deployer
       puts "*** \"#{ str }\" is already included in \"#{ ::File.basename( filename ) }\"."
     elsif addition
       puts "[!] \"#{ str }\" is not included yet in \"#{ ::File.basename( filename ) }\"."
-      ::File.open( filename , "r:utf-8" ) do |f|
+      ::File.open( filename , "a:utf-8" ) do |f|
         f.print( "\n" * 2 )
         f.print( str )
       end
+      puts ""
       send( __method__ , filename , str , addition: true )
+      puts "[!] \"#{ str }\" is added to \"#{ ::File.basename( filename ) }\"."
     end
     puts ""
   end
