@@ -113,18 +113,7 @@ def set_cap_namespace_gem
         latest_version_setting_in_gitignore
       )
 
-      if ::File.open( gitignore_filename , "r:utf-8" ).read.split( /\n/ ).include?( latest_version_setting_in_gitignore )
-        puts "*** \"/.latest_version\" is already included in \".gitignore\"."
-      else
-        puts "[!] \"/.latest_version\" is not included yet in \".gitignore\"."
-        ::File.open( gitignore_filename , "r:utf-8" ) do |f|
-          f.print( "\n" * 2 )
-          f.print( latest_version_setting_in_gitignore )
-        end
-        if ::File.open( gitignore_filename , "r:utf-8" ).read.split( /\n/ ).include?( latest_version_setting_in_gitignore )
-        puts "*** \"/.latest_version\" is already included in \".gitignore\"."
-      end
-      puts ""
+      ::Deployer.file_inclusion_check( gitignore_filename , latest_version_setting_in_gitignore , addition: true )
 
       #-------- version.rb
 

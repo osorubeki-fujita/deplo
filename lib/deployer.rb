@@ -36,6 +36,20 @@ module Deployer
     ::Versionomy.parse( version ) > ::Versionomy.parse( latest_version )
   end
 
+  def self.file_inclusion_check( filename , str , addition: false )
+    if ::File.open( filename , "r:utf-8" ).read.split( /\n/ ).include?( str )
+      puts "*** \"#{ str }\" is already included in \"#{ ::File.basename( filename ) }\"."
+    elsif addition
+      puts "[!] \"#{ str }\" is not included yet in \"#{ ::File.basename( filename ) }\"."
+      ::File.open( filename , "r:utf-8" ) do |f|
+        f.print( "\n" * 2 )
+        f.print( str )
+      end
+      send( __method__ , filename , str , addition: true )
+    end
+    puts ""
+  end
+
 end
 
 def set_cap_tasks_from_deployer
