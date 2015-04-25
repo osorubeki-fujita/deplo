@@ -11,7 +11,7 @@ def set_cap_namespace_gem
 
     desc "Gem - Rake install"
     task :rake_install_locally do
-      ::Deployer.process "gem:install" do
+      ::Deployer.process "gem:rake_install_locally" do
         system( "rake install" )
       end
     end
@@ -27,7 +27,7 @@ def set_cap_namespace_gem
 
     desc "Install Gem #{ fetch( :new_version ) }"
     task install_locally: :test do
-      ::Deployer.process "gem:install" do
+      ::Deployer.process "gem:install_locally" do
         ::Deployer.yes_no( yes: ::Proc.new {
           ::Rake::Task[ "git:commit_for_gem" ].invoke
           ::Rake::Task[ "github:push" ].invoke
