@@ -110,7 +110,7 @@ def set_cap_namespace_gem
         ".latest_version"
       )
 
-      if ::File.open( latest_version_file , "r:utf-8" ).read.split( /\n/ ).include?( ".latest_version" )
+      if ::File.open( fetch( :latest_version_file ) , "r:utf-8" ).read.split( /\n/ ).include?( ".latest_version" )
         puts "*** \".latest_version\" is already included in \".gitignore\"."
       else
         puts "[!] \".latest_version\" is not included yet in \".gitignore\"."
