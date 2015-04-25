@@ -13,10 +13,12 @@ module Deployer
       if yes.present?
         yes.call
       end
-    elsif yn.empty?
+    elsif yn.downcase == "n"
+      if no.present?
+        no.call
+      end
+    else
       yes_no( condition , yes: yes , no: no )
-    elsif no.present?
-      no.call
     end
     return condition
   end
