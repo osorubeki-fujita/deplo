@@ -8,12 +8,13 @@ module Deployer
     yn = ::STDIN.gets.chomp
     condition ||= false
 
-    if yn.downcase == "y"
+    case yn.downcase
+    when "y"
       condition = true
       if yes.present?
         yes.call
       end
-    elsif yn.downcase == "n"
+    when "n"
       if no.present?
         no.call
       end
