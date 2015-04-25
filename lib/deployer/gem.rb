@@ -111,9 +111,9 @@ def set_cap_namespace_gem
       )
 
       if ::File.open( latest_version_file , "r:utf-8" ).read.split( /\n/ ).include?( ".latest_version" )
-        puts "\".latest_version\" is already included in \".gitignore\"."
+        puts "*** \".latest_version\" is already included in \".gitignore\"."
       else
-        puts "* \".latest_version\" is not included yet in \".gitignore\"."
+        puts "[!] \".latest_version\" is not included yet in \".gitignore\"."
       end
 
       #-------- version.rb
@@ -135,9 +135,9 @@ def set_cap_namespace_gem
         in_file.any? { | row | regexp === row }
       }
       if condition
-        puts "All Capistrano constants are set. (maybe each constant itself is not valid)"
+        puts "*** All Capistrano constants are set. (maybe each constant itself is not valid)"
       else
-        puts "Some Capistrano constants are not set."
+        puts "[!] Some Capistrano constants are not set."
       end
     end
 
