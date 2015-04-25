@@ -47,8 +47,7 @@ def set_cap_namespace_gem
       end
       ::Deployer.process "gem:yank_old_version" do
         ::Deployer.yes_no( message: "Yank Old Gem #{ old_version }" , yes: ::Proc.new {
-          puts "test"
-          puts( "gem yank #{ fetch( :gem ) } -v #{ old_version }" )
+          system( "gem yank #{ fetch( :gem ) } -v #{ old_version }" )
         })
       end
     end
