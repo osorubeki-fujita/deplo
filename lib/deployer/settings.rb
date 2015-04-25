@@ -6,5 +6,5 @@ def set_cap_consts
   require "#{ fetch( :pj_dir ) }/lib/#{ fetch( :gem ) }/version.rb"
   set :new_version , eval( "#{ fetch( :gem ).camelize }::VERSION" )
 
-  require "version.rb"
+  require "#{ ::File.dirname( __FILE__ ) }/version.rb"
 end
