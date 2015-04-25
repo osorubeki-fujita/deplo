@@ -72,7 +72,7 @@ def set_cap_namespace_gem
         "spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )" ,
         "version = \"#{ fetch( :new_version ) }\"" ,
         "describe #{ fetch( :gem ).camelize } do" ,
-        "  it \"has a version number \'\#\{ version \}\'\" do" ,
+        "  it \"has a version number \\\'\#\{ version \}\\\'\" do" ,
         "    expect( ::#{ fetch( :gem ).camelize }::VERSION ).to eq( version )" ,
         "    expect( ::#{ fetch( :gem ).camelize }.version_check( ::#{ fetch( :gem ).camelize }::VERSION , spec_filename ) ).to eq( true )" ,
         "  end"
