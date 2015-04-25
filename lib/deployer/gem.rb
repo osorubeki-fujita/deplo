@@ -110,7 +110,7 @@ def set_cap_namespace_gem
         "/.latest_version"
       )
 
-      if ::File.open( fetch( :latest_version_file ) , "r:utf-8" ).read.split( /\n/ ).include?( ".latest_version" )
+      if ::File.open( fetch( :latest_version_file ) , "r:utf-8" ).read.split( /\n/ ).include?( "/.latest_version" )
         puts "*** \".latest_version\" is already included in \".gitignore\"."
       else
         puts "[!] \".latest_version\" is not included yet in \".gitignore\"."
@@ -131,9 +131,16 @@ def set_cap_namespace_gem
         /\Aset \:github_remote_name/ ,
         /\Aset \:deploy_to +?, \'\/\'/
       ]
+
       condition = regexps.all? { | regexp |
-        in_file.any? { | row | regexp === row }
+        included_in_file = in_file.any? { | row | regexp === row }
+        unless included_in_file
+          puts "No row matched with #{ regexp.to_s }"
+        end
+
+        included_in_file
       }
+
       if condition
         puts "*** All Capistrano constants are set. (maybe each constant itself is not valid)"
       else
