@@ -54,33 +54,91 @@ def set_cap_namespace_gem
 
     desc "Files to check"
     task :files_to_check do
-      puts "#{ fetch( :gem ) }.gemspec"
-      [
+
+      #-------- xxxx.gemspec
+
+      ::Deployer.display_file_info_to_check(
+        "#{ fetch( :gem ) }.gemspec" ,
         "spec.add_development_dependency \"capistrano\"" ,
-        "spec.add_development_dependency \"deployer\", \">= #{ Deployer::VERSION }\""
-      ].each do | str |
-        puts " " * 4 + str
-      end
-      puts ""
-      puts "#{ fetch( :gem ) }/spec/#{ fetch( :gem ) }_spec.rb"
-      [
+        "spec.add_development_dependency \"deployer\", \">= #{ Deployer::VERSION }\""
+      )
+
+      #-------- xxxx/spec/xxxx_spec.rb
+
+      ::Deployer.display_file_info_to_check(
+        "#{ fetch( :gem ) }/spec/#{ fetch( :gem ) }_spec.rb" ,
         "require \'spec_helper\'" ,
         "require \'deployer\'" ,
         "spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )" ,
         "version = \"#{ fetch( :new_version ) }\"" ,
         "describe #{ fetch( :gem ).camelize } do" ,
-        "  it "has a version number \'\#\{ version \}\'\" do" ,
-        "    expect( ::#{ fetch( :gem ).camelize }::VERSION ).to eq( version )"
+        "  it \"has a version number \'\#\{ version \}\'\" do" ,
+        "    expect( ::#{ fetch( :gem ).camelize }::VERSION ).to eq( version )" ,
         "    expect( ::#{ fetch( :gem ).camelize }.version_check( MetalicRatio::VERSION , spec_filename ) ).to eq( true )" ,
         "  end"
-      ].each do | str |
-        puts " " * 4 + str
+      )
+
+      #-------- Capfile (1)
+
+      ::Deployer.display_file_info_to_check(
+        "Capfile" ,
+        #
+        "\# Load DSL and set up stages" ,
+        "require \'capistrano/setup\'" ,
+        "" ,
+        "\# Include default deployment tasks" ,
+        "require \'capistrano/deploy\'" ,
+        "" ,
+        "\# The gem \'deployer\' is not released on RubyGems" ,
+        "require \'deployer\'"
+      )
+
+      #-------- Capfile (2)
+
+      ::Deployer.display_file_info_to_check(
+        "Capfile" ,
+        #
+        "Rake::Task[:production].invoke" ,
+        "invoke :production" ,
+        "set_cap_tasks_from_deployer"
+      )
+
+      #-------- .gitignore
+
+      ::Deployer.display_file_info_to_check(
+        ".gitignore" ,
+        ".latest_version"
+      )
+
+      if ::File.open( latest_version_file , "r:utf-8" ).read.split( /\n/ ).include?( ".latest_version" )
+        puts "\".latest_version\" is already included in \".gitignore\"."
+      else
+        puts "* \".latest_version\" is not included yet in \".gitignore\"."
       end
-      
-      # Capfile
-      # deploy.rb
-      # version.rb
-      # .gitignore
+
+      #-------- version.rb
+
+      ::Deployer.display_file_info_to_check( "version.rb" )
+
+      #-------- config/deploy.rb
+
+      ::Deployer.display_file_info_to_check( "config/deploy.rb" )
+      in_file = ::File.expand_path( "#{ fetch( :pj_dir ) }/config/deploy.rb" ).read.split( /\n/ )
+      regexps = [
+        /\Aset \:application/ ,
+        /\Aset \:repo_url/ ,
+        /\Aset \:pj_dir/ ,
+        /\Aset \:github_remote_name/ ,
+        /\Aset \:deploy_to +?, \'\/\'/
+      ]
+      condition = regexps.all? { | regexp |
+        in_file.any? { | row | regexp === row }
+      }
+      if condition
+        puts "All Capistrano constants are set. (maybe each constant itself is not valid)"
+      else
+        puts "Some Capistrano constants are not set."
+      end
     end
 
   end
