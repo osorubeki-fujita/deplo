@@ -31,7 +31,7 @@ module Deployer
 
   def self.version_check( version , spec_filename )
     latest_version = open( "#{ spec_filename }/../.latest_version" , "r:utf-8" ).read
-    ::Versionomy.parse( version ) >= ::Versionomy.parse( latest_version )
+    ::Versionomy.parse( version ) > ::Versionomy.parse( latest_version )
   end
 
 end
