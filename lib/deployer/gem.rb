@@ -104,16 +104,25 @@ def set_cap_namespace_gem
       )
 
       #-------- .gitignore
+      
+      gitignore_filename = ::File.expand_path( "#{ fetch( :pj_dir ) }/.gitignore" )
+      latest_version_setting_in_gitignore = "/.latest_version"
 
       ::Deployer.display_file_info_to_check(
         ".gitignore" ,
-        "/.latest_version"
+        latest_version_setting_in_gitignore
       )
 
-      if ::File.open( ::File.expand_path( "#{ fetch( :pj_dir ) }/.gitignore" ) , "r:utf-8" ).read.split( /\n/ ).include?( "/.latest_version" )
+      if ::File.open( gitignore_filename , "r:utf-8" ).read.split( /\n/ ).include?( latest_version_setting_in_gitignore )
         puts "*** \"/.latest_version\" is already included in \".gitignore\"."
       else
         puts "[!] \"/.latest_version\" is not included yet in \".gitignore\"."
+        ::File.open( gitignore_filename , "r:utf-8" ) do |f|
+          f.print( "\n" * 2 )
+          f.print( latest_version_setting_in_gitignore )
+        end
+        if ::File.open( gitignore_filename , "r:utf-8" ).read.split( /\n/ ).include?( latest_version_setting_in_gitignore )
+        puts "*** \"/.latest_version\" is already included in \".gitignore\"."
       end
       puts ""
 
