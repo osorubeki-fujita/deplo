@@ -4,6 +4,7 @@ require "deployer/version"
 
 require "active_support"
 require "active_support/core_ext"
+require "versionomy"
 
 #--------
 
@@ -26,6 +27,11 @@ module Deployer
     puts ""
     puts "-" * 32 + "Complete: #{ command }"
     puts ""
+  end
+
+  def self.version_check( version , spec_filename )
+    latest_version = open( "#{ spec_filename }/../.latest_version" , "r:utf-8" ).read
+    ::Versionomy.parse( MetalicRatio::VERSION ) >= ::Versionomy.parse( latest_version )
   end
 
 end
