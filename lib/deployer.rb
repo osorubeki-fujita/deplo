@@ -21,6 +21,7 @@ module Deployer
 
   def self.process( command )
     puts "=" * 64
+    puts ""
     puts command
     puts ""
     yield
