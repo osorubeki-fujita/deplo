@@ -12,6 +12,7 @@ require_relative 'deployer/settings'
 
 require_relative 'deployer/yes_no'
 require_relative 'deployer/from_command_line'
+require_relative 'deployer/display_file_info_to_check'
 
 require_relative 'deployer/git'
 require_relative 'deployer/github'
