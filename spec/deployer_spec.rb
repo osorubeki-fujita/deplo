@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )
-version = "0.1.4"
+version = "0.1.5"
 
 describe Deployer do
-  it 'has a version number' do
+  it "has a version number \'#{ Deployer::VERSION }\'" do
     expect( Deployer::VERSION ).to eq( version )
   end
 

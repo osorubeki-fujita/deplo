@@ -32,16 +32,23 @@ def set_cap_namespace_gem
           ::Rake::Task[ "git:commit_for_gem" ].invoke
           ::Rake::Task[ "github:push" ].invoke
           ::Rake::Task[ "gem:rake_install_locally" ].invoke
-          ::Rake::Task[ "gem:update" ].invoke
         } )
       end
     end
 
     desc "Release Gem #{ fetch( :new_version ) }"
     task release_to_public: :install_locally do
+      old_version = open( fetch( :latest_version_file ) , "r:utf-8" ).read
       ::Deployer.process "gem:release_to_public" do
         ::Deployer.yes_no( message: "Release Gem #{ fetch( :new_version ) }" , yes: ::Proc.new {
+          ::Rake::Task[ "gem:update" ].invoke
           system( "rake release" )
+        })
+      end
+      ::Deployer.process "gem:yank_old_version" do
+        ::Deployer.yes_no( message: "Yank Old Gem #{ old_version }" , yes: ::Proc.new {
+          puts "test"
+          puts( "gem yank #{ fetch( :gem ) } -v #{ old_version }" )
         })
       end
     end
