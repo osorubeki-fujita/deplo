@@ -107,7 +107,7 @@ def set_cap_namespace_gem
 
       ::Deployer.display_file_info_to_check(
         ".gitignore" ,
-        ".latest_version"
+        "/.latest_version"
       )
 
       if ::File.open( fetch( :latest_version_file ) , "r:utf-8" ).read.split( /\n/ ).include?( ".latest_version" )
@@ -123,7 +123,7 @@ def set_cap_namespace_gem
       #-------- config/deploy.rb
 
       ::Deployer.display_file_info_to_check( "config/deploy.rb" )
-      in_file = ::File.expand_path( "#{ fetch( :pj_dir ) }/config/deploy.rb" ).read.split( /\n/ )
+      in_file = ::File.open( "#{ fetch( :pj_dir ) }/config/deploy.rb" ).read.split( /\n/ )
       regexps = [
         /\Aset \:application/ ,
         /\Aset \:repo_url/ ,
