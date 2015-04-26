@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Shu Fujita"]
   spec.email = ["osorubeki.fujita@gmail.com"]
 
-  spec.summary = "This gem provides short-cut for frequently-used processions as Capistrano Tasks"
+  spec.summary = "This gem provides short-cut for frequently-used processions as Capistrano Tasks - customized for the developer's environment"
   spec.license = "MIT"
   # spec.description = %q{TODO: Write a longer description or delete this line.}
   # spec.homepage = "TODO: Put your gem's website or public repo URL here."
@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
 
-  spec.add_development_dependency "activesupport", ">= 4.2.1"
-  spec.add_development_dependency "capistrano"
-  spec.add_development_dependency "versionomy", ">= 0.4.4"
+  spec.add_runtime_dependency "activesupport", ">= 4.2.1"
+  spec.add_runtime_dependency "capistrano"
+  spec.add_runtime_dependency "versionomy", ">= 0.4.4"
 end
