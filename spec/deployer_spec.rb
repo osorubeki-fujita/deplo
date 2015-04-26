@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )
-version = '0.3.1'
+version = "0.3.2"
 
 describe Deployer do
   it "has a version number \'#{ Deployer::VERSION }\'" do
