@@ -28,7 +28,7 @@ def set_cap_namespace_github
         system "git push #{ github_remote_name } #{ branch_name }"
       end
     end
-  
+
     desc 'pull from github'
     task :pull do
       ::Deployer.process "github:pull" do
@@ -37,7 +37,7 @@ def set_cap_namespace_github
         system "git push #{ github_remote_name } #{ branch_name }"
       end
     end
-  
+
   end
 
 end
