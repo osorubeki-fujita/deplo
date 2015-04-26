@@ -63,15 +63,3 @@ def set_cap_tasks_from_deployer( cap_consts: true )
   set_cap_namespace_github
   set_cap_namespace_gem
 end
-
-__END__
-
-( ::Dir.glob( "**/**.rb" ) + ::Dir.glob( "**/**.gemspec" ) ).each do |f|
-puts f
-rows = ::File.open( f , "r:utf-8" ).read.split(/[\n\r]/)
-rows_new = rows.map { | str | str.encode( "utf-8" ) }
-content_new = rows_new.join( "\n" )
-::File.open( f , "w:utf-8" ) do |f|
-f.print( content_new )
-end
-end
