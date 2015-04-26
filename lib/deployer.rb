@@ -58,6 +58,7 @@ def set_cap_tasks_from_deployer( cap_consts: true )
   if cap_consts
     set_cap_consts
   end
+
   set_cap_namespace_git
   set_cap_namespace_github
   set_cap_namespace_gem
