@@ -8,7 +8,7 @@ require "versionomy"
 
 #--------
 
-require_relative 'deployer/settings'
+require_relative 'deployer/set_cap_consts'
 
 require_relative 'deployer/yes_no'
 require_relative 'deployer/from_command_line'
@@ -54,8 +54,10 @@ module Deployer
 
 end
 
-def set_cap_tasks_from_deployer
-  set_cap_consts
+def set_cap_tasks_from_deployer( cap_consts: true )
+  if cap_consts
+    set_cap_consts
+  end
   set_cap_namespace_git
   set_cap_namespace_github
   set_cap_namespace_gem

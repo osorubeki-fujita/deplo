@@ -1,5 +1,5 @@
 def set_cap_consts
-  set :gem , fetch( :application ).gsub( /\Agem_/ , "" )
+  set :gem , fetch( :application ).gsub( /\Agem_/ , "" ).gsub( /::[a-z\d+]+\Z/ , "" )
   set :latest_version_file , ::File.expand_path( "#{ fetch( :pj_dir ) }/.latest_version" )
 
   # Version of Gem
