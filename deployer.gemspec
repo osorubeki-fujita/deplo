@@ -1,5 +1,3 @@
-
-
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -12,9 +10,9 @@ Gem::Specification.new do |spec|
   spec.email = ["osorubeki.fujita@gmail.com"]
 
   spec.summary = "This gem provides short-cut for frequently-used processions as Capistrano Tasks - customized for the developer's environment"
-  spec.license = "MIT"
   # spec.description = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage = "https://github.com/osorubeki-fujita/deployer"
+  spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
