@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
 
-  spec.add_runtime_dependency "activesupport", ">= 4.2.1"
-  spec.add_runtime_dependency "versionomy" , ">= 0.4.4"
+  spec.add_runtime_dependency "activesupport" , ">= 4.2.1"
+  spec.add_runtime_dependency "versionomy" , ">= 0.4.4"
   spec.add_runtime_dependency "capistrano"
 end
