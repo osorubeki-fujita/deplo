@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'deployer/version'
+require 'deplo/version'
 
 Gem::Specification.new do |spec|
-  spec.name = "deployer"
-  spec.version = Deployer::VERSION
+  spec.name = "deplo"
+  spec.version = Deplo::VERSION
   spec.authors = ["Shu Fujita"]
   spec.email = ["osorubeki.fujita@gmail.com"]
 
   spec.summary = "This gem provides short-cut for frequently-used processions as Capistrano Tasks - customized for the developer's environment"
   # spec.description = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage = "https://github.com/osorubeki-fujita/deployer"
+  spec.homepage = "https://github.com/osorubeki-fujita/deplo"
   spec.license = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

@@ -1,4 +1,4 @@
-class Deployer::FromCommandLine
+class Deplo::FromCommandLine
 
   def initialize( title: nil , message: nil , content: nil )
     raise "Error" if [ title , message ].all?( &:nil? )
@@ -14,7 +14,7 @@ class Deployer::FromCommandLine
       a = ::STDIN.gets.chomp
       @content = a
       puts message_after_input_string
-      @condition = ::Deployer.yes_no( @condition )
+      @condition = ::Deplo.yes_no( @condition )
     end
 
     actual_content

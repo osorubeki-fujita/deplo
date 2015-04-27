@@ -1,4 +1,4 @@
-class Deployer::TitleForGitCommit < Deployer::FromCommandLine
+class Deplo::TitleForGitCommit < Deplo::FromCommandLine
 
   def initialize( gem_version: nil )
     super( title: "Title for \'git commit\'" , message: "Please input title for commitment" )
@@ -9,7 +9,7 @@ class Deployer::TitleForGitCommit < Deployer::FromCommandLine
   def set
     if @gem_version.present?
       @content = "Install Gem (#{ @gem_version })"
-      @condition = ::Deployer.yes_no( message: message_after_input_string ) # ( @condition )
+      @condition = ::Deplo.yes_no( message: message_after_input_string ) # ( @condition )
       super
     else
       super
@@ -30,30 +30,30 @@ def set_cap_namespace_git
   
     desc 'add to git all files under this directory'
     task :add do
-      ::Deployer.process "git:add" do
+      ::Deplo.process "git:add" do
         system "git add -A ."
       end
     end
   
     desc 'commit to git'
     task commit: :add do
-      ::Deployer.process "git:commit" do
-        system "git commit -m \"#{ ::Deployer::TitleForGitCommit.set }\""
+      ::Deplo.process "git:commit" do
+        system "git commit -m \"#{ ::Deplo::TitleForGitCommit.set }\""
       end
     end
   
     desc 'commit to git (amend)'
     task :commit_amend do
-      ::Deployer.process "git:commit_amend" do
-        system "git commit --amend -m \"#{ ::Deployer::TitleForGitCommit.set }\""
+      ::Deplo.process "git:commit_amend" do
+        system "git commit --amend -m \"#{ ::Deplo::TitleForGitCommit.set }\""
       end
     end
   
     desc 'commit to git (for Gem install or release)'
     task commit_for_gem: :add do
-      ::Deployer.process "git:commit_for_gem" do
+      ::Deplo.process "git:commit_for_gem" do
         gem_v = fetch( :new_version )
-        t = ::Deployer::TitleForGitCommit.set( gem_version: gem_v )
+        t = ::Deplo::TitleForGitCommit.set( gem_version: gem_v )
         system "git commit -m \"#{t}\""
       end
     end

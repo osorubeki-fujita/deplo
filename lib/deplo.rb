@@ -1,4 +1,4 @@
-require "deployer/version"
+require "deplo/version"
 
 #--------
 
@@ -8,17 +8,17 @@ require "versionomy"
 
 #--------
 
-require_relative 'deployer/set_cap_consts'
+require_relative 'deplo/set_cap_consts'
 
-require_relative 'deployer/yes_no'
-require_relative 'deployer/from_command_line'
-require_relative 'deployer/display_file_info_to_check'
+require_relative 'deplo/yes_no'
+require_relative 'deplo/from_command_line'
+require_relative 'deplo/display_file_info_to_check'
 
-require_relative 'deployer/git'
-require_relative 'deployer/github'
-require_relative 'deployer/gem'
+require_relative 'deplo/git'
+require_relative 'deplo/github'
+require_relative 'deplo/gem'
 
-module Deployer
+module Deplo
 
   def self.process( command )
     puts "=" * 64
@@ -54,7 +54,7 @@ module Deployer
 
 end
 
-def set_cap_tasks_from_deployer( cap_consts: true )
+def set_cap_tasks_from_deplo( cap_consts: true )
   if cap_consts
     set_cap_consts
   end

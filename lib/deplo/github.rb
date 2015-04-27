@@ -1,4 +1,4 @@
-class Deployer::BranchNameForGithub < Deployer::FromCommandLine
+class Deplo::BranchNameForGithub < Deplo::FromCommandLine
 
   def initialize
     super( title: "Git Branch" , message: "Please input name of branch" , content: "master" )
@@ -7,7 +7,7 @@ class Deployer::BranchNameForGithub < Deployer::FromCommandLine
   def set
     while !( @condition )
       if @content == "master"
-        @condition = ::Deployer.yes_no( @condition , no: ::Proc.new { @content = nil } , message: "Use branch \'master\'" )
+        @condition = ::Deplo.yes_no( @condition , no: ::Proc.new { @content = nil } , message: "Use branch \'master\'" )
       else
         super
       end
@@ -22,18 +22,18 @@ def set_cap_namespace_github
 
     desc 'push to github'
     task :push do
-      ::Deployer.process "github:push" do
+      ::Deplo.process "github:push" do
         github_remote_name = fetch( :github_remote_name )
-        branch_name = ::Deployer::BranchNameForGithub.set
+        branch_name = ::Deplo::BranchNameForGithub.set
         system "git push #{ github_remote_name } #{ branch_name }"
       end
     end
 
     desc 'pull from github'
     task :pull do
-      ::Deployer.process "github:pull" do
+      ::Deplo.process "github:pull" do
         github_remote_name = fetch( :github_remote_name )
-        branch_name = ::Deployer::BranchNameForGithub.set
+        branch_name = ::Deplo::BranchNameForGithub.set
         system "git push #{ github_remote_name } #{ branch_name }"
       end
     end

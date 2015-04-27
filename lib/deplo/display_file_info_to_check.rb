@@ -1,4 +1,4 @@
-module Deployer
+module Deplo
 
   def self.display_file_info_to_check( filename_to_check , *contents )
     puts "-" * 64

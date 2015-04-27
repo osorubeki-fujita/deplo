@@ -1,3 +1,3 @@
-module Deployer
+module Deplo
   VERSION = "0.3.3"
 end

@@ -1,4 +1,4 @@
-module Deployer
+module Deplo
 
   def self.yes_no( condition = nil , message: nil , yes: nil , no: nil )
     if message.present?
