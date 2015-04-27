@@ -4,10 +4,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'deplo/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "deplo"
-  spec.version       = Deplo::VERSION
-  spec.authors       = ["Shu Foujita"]
-  spec.email         = ["osorubeki.fujita@gmail.com"]
+  spec.name = "deplo"
+  spec.version = Deplo::VERSION
+  spec.authors = ["Shu Fujita"]
+  spec.email = ["osorubeki.fujita@gmail.com"]
 
   spec.summary = "This gem provides short-cut for frequently-used processions as Capistrano Tasks - customized for the developer's environment"
   # spec.description = %q{TODO: Write a longer description or delete this line.}
