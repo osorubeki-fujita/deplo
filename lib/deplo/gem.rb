@@ -89,7 +89,6 @@ def set_cap_namespace_gem
         "\# Include default deployment tasks" ,
         "require \'capistrano/deploy\'" ,
         "" ,
-        "\# The gem \'deplo\' is not released on RubyGems" ,
         "require \'deplo\'"
       )
 
@@ -104,7 +103,7 @@ def set_cap_namespace_gem
       )
 
       #-------- .gitignore
-      
+
       gitignore_filename = ::File.expand_path( "#{ fetch( :pj_dir ) }/.gitignore" )
       latest_version_setting_in_gitignore = "/.latest_version"
 
