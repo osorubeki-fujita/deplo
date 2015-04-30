@@ -46,8 +46,8 @@ module Deplo
         f.print( str )
       end
       puts ""
-      send( __method__ , filename , str , addition: true )
       puts "[!] \"#{ str }\" is added to \"#{ ::File.basename( filename ) }\"."
+      send( __method__ , filename , str , addition: true )
     end
     puts ""
   end
