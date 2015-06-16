@@ -21,7 +21,9 @@ def set_cap_namespace_gem
       ::Deplo.process "gem:update" do
         latest_version_file = fetch( :latest_version_file )
         unless ::File.exist?( latest_version_file )
-          ::File.open( latest_version_file , "r:utf-8" ).close
+          ::File.open( latest_version_file , "r:utf-8" ) do |f|
+            f.print ''
+          end
         end
         ::File.open( latest_version_file , "w:utf-8" ) do |f|
           f.print fetch( :new_version )
