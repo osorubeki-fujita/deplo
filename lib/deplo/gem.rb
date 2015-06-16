@@ -42,17 +42,23 @@ def set_cap_namespace_gem
 
     desc "Release Gem #{ fetch( :new_version ) }"
     task release_to_public: :install_locally do
-      old_version = open( fetch( :latest_version_file ) , "r:utf-8" ).read
+      if ::File.exist?( fetch( :latest_version_file ) )
+        old_version = open( fetch( :latest_version_file ) , "r:utf-8" ).read
+      else
+        old_version = nil
+      end
       ::Deplo.process "gem:release_to_public" do
         ::Deplo.yes_no( message: "Release Gem #{ fetch( :new_version ) }" , yes: ::Proc.new {
           ::Rake::Task[ "gem:update" ].invoke
           system( "rake release" )
         })
       end
-      ::Deplo.process "gem:yank_old_version" do
-        ::Deplo.yes_no( message: "Yank Old Gem #{ old_version }" , yes: ::Proc.new {
-          system( "gem yank #{ fetch( :gem ) } -v #{ old_version }" )
-        })
+      unless old_version.nil?
+        ::Deplo.process "gem:yank_old_version" do
+          ::Deplo.yes_no( message: "Yank Old Gem #{ old_version }" , yes: ::Proc.new {
+            system( "gem yank #{ fetch( :gem ) } -v #{ old_version }" )
+          })
+        end
       end
     end
 
