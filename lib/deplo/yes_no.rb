@@ -19,7 +19,7 @@ module Deplo
         no.call
       end
     else
-      return __method__( condition , yes: yes , no: no )
+      return yes_no( condition , yes: yes , no: no )
     end
     return condition
   end
