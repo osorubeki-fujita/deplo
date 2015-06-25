@@ -57,7 +57,7 @@ def set_cap_namespace_git
         system "git commit -m \"#{t}\""
       end
     end
-  
+
   end
 
 end
