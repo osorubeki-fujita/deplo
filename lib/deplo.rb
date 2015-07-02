@@ -32,7 +32,7 @@ module Deplo
   end
 
   def self.version_check( version , spec_filename )
-    latest_version = open( "#{ spec_filename }/../.latest_version" , "r:utf-8" ).read
+    latest_version = open( "#{ spec_filename }/../.latest_version" , "r:utf-8" ).read.chomp
     ::Versionomy.parse( version ) > ::Versionomy.parse( latest_version )
   end
 
