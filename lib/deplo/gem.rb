@@ -64,7 +64,7 @@ def set_cap_namespace_gem
 
       #-------- xxxx.gemspec
 
-      ::Deplo.display_file_info_to_check(
+      ::Deplo.display_file_content_to_check(
         "#{ fetch( :gem ) }.gemspec" ,
         "spec.add_development_dependency \"capistrano\"" ,
         "spec.add_development_dependency \"deplo\", \">= #{ ::Deplo::VERSION }\""
@@ -73,7 +73,7 @@ def set_cap_namespace_gem
       #-------- lib/xxxx/version.rb
 
 
-      ::Deplo.display_file_info_to_check(
+      ::Deplo.display_file_content_to_check(
         "lib/#{ fetch( :gem ) }/version.rb" ,
         "module #{ fetch( :gem ).upcase }" ,
         "  VERSION = ::File.open( \"\#\{ ::File.dirname( __FILE__ ) \}/../../.current_version\" , \"r:utf-8\" ).read.chomp" ,
@@ -82,7 +82,7 @@ def set_cap_namespace_gem
 
       #-------- spec/xxxx_spec.rb
 
-      ::Deplo.display_file_info_to_check(
+      ::Deplo.display_file_content_to_check(
         "spec/#{ fetch( :gem ) }_spec.rb" ,
         "require \'spec_helper\'" ,
         "require \'deplo\'" ,
@@ -98,7 +98,7 @@ def set_cap_namespace_gem
 
       #-------- Capfile (1)
 
-      ::Deplo.display_file_info_to_check(
+      ::Deplo.display_file_content_to_check(
         "Capfile" ,
         #
         "\# Load DSL and set up stages" ,
@@ -112,7 +112,7 @@ def set_cap_namespace_gem
 
       #-------- Capfile (2)
 
-      ::Deplo.display_file_info_to_check(
+      ::Deplo.display_file_content_to_check(
         "Capfile" ,
         #
         "Rake::Task[:production].invoke" ,
@@ -125,7 +125,7 @@ def set_cap_namespace_gem
       gitignore_filename = ::File.expand_path( "#{ fetch( :pj_dir ) }/.gitignore" )
       latest_version_setting_in_gitignore = "/.latest_version"
 
-      ::Deplo.display_file_info_to_check(
+      ::Deplo.display_file_content_to_check(
         ".gitignore" ,
         latest_version_setting_in_gitignore
       )
@@ -134,11 +134,11 @@ def set_cap_namespace_gem
 
       #-------- version.rb
 
-      ::Deplo.display_file_info_to_check( "lib/#{ fetch( :gem ) }/version.rb" )
+      ::Deplo.display_file_content_to_check( "lib/#{ fetch( :gem ) }/version.rb" )
 
       #-------- config/deploy.rb
 
-      ::Deplo.display_file_info_to_check( "config/deploy.rb" )
+      ::Deplo.display_file_content_to_check( "config/deploy.rb" )
       in_file = ::File.open( "#{ fetch( :pj_dir ) }/config/deploy.rb" ).read.split( /\n/ )
       regexps = [
         /\Aset \:application/ ,

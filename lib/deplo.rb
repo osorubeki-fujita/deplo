@@ -12,7 +12,7 @@ require_relative 'deplo/set_cap_consts'
 
 require_relative 'deplo/yes_no'
 require_relative 'deplo/from_command_line'
-require_relative 'deplo/display_file_info_to_check'
+require_relative 'deplo/display_file_content_to_check'
 
 require_relative 'deplo/git'
 require_relative 'deplo/github'
