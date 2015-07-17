@@ -70,17 +70,28 @@ def set_cap_namespace_gem
         "spec.add_development_dependency \"deplo\", \">= #{ ::Deplo::VERSION }\""
       )
 
-      #-------- xxxx/spec/xxxx_spec.rb
+      #-------- lib/xxxx/version.rb
+
 
       ::Deplo.display_file_info_to_check(
-        "#{ fetch( :gem ) }/spec/#{ fetch( :gem ) }_spec.rb" ,
+        "lib/#{ fetch( :gem ) }/version.rb" ,
+        "module #{ fetch( :gem ).upcase }" ,
+        "  VERSION = ::File.open( \"\#\{ ::File.dirname( __FILE__ ) \}/../../.current_version\" , \"r:utf-8\" ).read.chomp" ,
+        "end"
+      )
+
+      #-------- spec/xxxx_spec.rb
+
+      ::Deplo.display_file_info_to_check(
+        "spec/#{ fetch( :gem ) }_spec.rb" ,
         "require \'spec_helper\'" ,
         "require \'deplo\'" ,
+        "" ,
         "spec_filename = ::File.expand_path( ::File.dirname( __FILE__ ) )" ,
-        "version = \"#{ fetch( :new_version ) }\"" ,
+        "version = ::File.open( \"\#\{ ::File.dirname( __FILE__ ) \}/..\/.current_version\" , \"r:utf-8\" ).read.chomp" ,
+        "" ,
         "describe #{ fetch( :gem ).camelize } do" ,
         "  it \"has a version number \\\'\#\{ version \}\\\'\" do" ,
-        "    expect( ::#{ fetch( :gem ).camelize }::VERSION ).to eq( version )" ,
         "    expect( ::Deplo.version_check( ::#{ fetch( :gem ).camelize }::VERSION , spec_filename ) ).to eq( true )" ,
         "  end"
       )

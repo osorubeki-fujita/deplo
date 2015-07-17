@@ -27,28 +27,28 @@ end
 def set_cap_namespace_git
 
   namespace :git do
-  
+
     desc 'add to git all files under this directory'
     task :add do
       ::Deplo.process "git:add" do
         system "git add -A ."
       end
     end
-  
+
     desc 'commit to git'
     task commit: :add do
       ::Deplo.process "git:commit" do
         system "git commit -m \"#{ ::Deplo::TitleForGitCommit.set }\""
       end
     end
-  
+
     desc 'commit to git (amend)'
     task :commit_amend do
       ::Deplo.process "git:commit_amend" do
         system "git commit --amend -m \"#{ ::Deplo::TitleForGitCommit.set }\""
       end
     end
-  
+
     desc 'commit to git (for Gem install or release)'
     task commit_for_gem: :add do
       ::Deplo.process "git:commit_for_gem" do
