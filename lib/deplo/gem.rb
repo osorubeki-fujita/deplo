@@ -75,7 +75,7 @@ def set_cap_namespace_gem
 
       ::Deplo.display_file_content_to_check(
         "lib/#{ fetch( :gem ) }/version.rb" ,
-        "module #{ fetch( :gem ).upcase }" ,
+        "module #{ fetch( :gem ).capitalize }" ,
         "  VERSION = ::File.open( \"\#\{ ::File.dirname( __FILE__ ) \}/../../.current_version\" , \"r:utf-8\" ).read.chomp" ,
         "end"
       )
